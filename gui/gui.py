@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from algorithm import *
+from algorithms.shor import *
 from IPython.display import display, Markdown, clear_output
 
 factoring_number = widgets.IntText(
