@@ -53,7 +53,7 @@ def qft_dagger(n):
 #     return a
 
 
-def qpe_amod15(a, n_count):
+def qpe_amod15(a, n_count, show):
     n_count = 8
     qc = QuantumCircuit(4+n_count, n_count)
     for q in range(n_count):
@@ -71,13 +71,13 @@ def qpe_amod15(a, n_count):
     qobj = assemble(t_qc, shots=1)
     result = aer_sim.run(qobj, memory=True).result()
     readings = result.get_memory()
-    print("Register Reading: " + readings[0])
+    if show: print("Register Reading: " + readings[0])
     phase = int(readings[0],2)/(2**n_count)
-    print("Corresponding Phase: %f" % phase)
+    if show: print("Corresponding Phase: %f" % phase)
     return phase
 
 
-def find_factor(N, a, qubits_count, show):
+def find_factor(N, a, qubits_count, show=False):
 
     factor_found = False
     attempt = 0
@@ -85,7 +85,7 @@ def find_factor(N, a, qubits_count, show):
     while not factor_found:
         attempt += 1
         if show: print("\nAttempt %i:" % attempt)
-        phase = qpe_amod15(a, qubits_count) # Phase = s/r
+        phase = qpe_amod15(a, qubits_count, show) # Phase = s/r
         frac = Fraction(phase).limit_denominator(N) # Denominator should (hopefully!) tell us r
         r = frac.denominator
         if show: print("Result: r = %i" % r)
@@ -101,7 +101,9 @@ def find_factor(N, a, qubits_count, show):
     return found
 
 
-N = 15
-a = 7
-qubits_count = 8 
-find_factor(N, a, qubits_count, True)
+
+if __name__ == "__main__":
+    N = 15
+    a = 7
+    qubits_count = 8 
+    find_factor(N, a, qubits_count, True)
