@@ -55,7 +55,6 @@ def qft_dagger(n):
 
 
 def qpe_amod15(a, n_count, show):
-    n_count =8
     qc = QuantumCircuit(4+n_count, n_count)
     for q in range(n_count):
         qc.h(q)     # Initialize counting qubits in state |+>

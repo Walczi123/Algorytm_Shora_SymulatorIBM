@@ -19,7 +19,7 @@ def on_button_clicked(_):
         clear_output()
         display(Markdown(f"Factoring for: {factoring_number.value} (timeout: {timeout.value})"))
 
-        factor_list1 = find_factor(factoring_number.value, a=7, qubits_count=20, timeout = timeout.value)
+        factor_list1 = find_factor(factoring_number.value, a=7, qubits_count=8, timeout = timeout.value)
         factor_list2 = find_factor(factoring_number.value, a=7, qubits_count=8, timeout = timeout.value)
         if len(factor_list1) == 0:
             display(Markdown(f"TIMEOUT: no factor found for the first run"))
