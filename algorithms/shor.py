@@ -6,6 +6,7 @@ from math import gcd
 from numpy.random import randint
 import pandas as pd
 from fractions import Fraction
+from time import perf_counter
 
 def c_amod15(a, power):
     """Controlled multiplication by a mod 15"""
@@ -54,7 +55,6 @@ def qft_dagger(n):
 
 
 def qpe_amod15(a, n_count, show):
-    n_count = 8
     qc = QuantumCircuit(4+n_count, n_count)
     for q in range(n_count):
         qc.h(q)     # Initialize counting qubits in state |+>
@@ -77,11 +77,11 @@ def qpe_amod15(a, n_count, show):
     return phase
 
 
-def find_factor(N, a, qubits_count, show=False):
-
+def find_factor(N, a, qubits_count, show=False, timeout=0):
     factor_found = False
     attempt = 0
     found = []
+    start = perf_counter()
     while not factor_found:
         attempt += 1
         if show: print("\nAttempt %i:" % attempt)
@@ -98,6 +98,8 @@ def find_factor(N, a, qubits_count, show=False):
                     if show: print("*** Non-trivial factor found: %i ***" % guess)
                     factor_found = True
                     found.append(guess)
+        if timeout != 0 and (perf_counter() - start) > timeout:
+            return []
     return found
 
 
