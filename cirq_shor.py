@@ -52,7 +52,7 @@ import fractions
 import math
 import random
 from typing import Callable, Optional, Sequence, Union
-from b import ArithmeticGate
+from arithmetic_gate import ArithmeticGate
 
 import sympy
 
