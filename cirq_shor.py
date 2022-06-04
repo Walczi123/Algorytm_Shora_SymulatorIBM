@@ -52,7 +52,7 @@ import fractions
 import math
 import random
 from typing import Callable, Optional, Sequence, Union
-from b import ArithmeticGate
+from arithmetic_gate import ArithmeticGate
 
 import sympy
 
@@ -330,7 +330,7 @@ def find_factor(
     return None  # coverage: ignore
 
 
-def main(n: int, order_finder: Callable[[int, int], Optional[int]] = naive_order_finder):
+def main(n: int, order_finder: Callable[[int, int], Optional[int]] = naive_order_finder, show=True):
     if n < 2:
         raise ValueError(
             f'Invalid input {n}, expected positive integer greater than one.')
@@ -338,12 +338,21 @@ def main(n: int, order_finder: Callable[[int, int], Optional[int]] = naive_order
     d = find_factor(n, order_finder)
 
     if d is None:
-        print(f'No non-trivial factor of {n} found. It is probably a prime.')
+        if show:
+            print(
+                f'No non-trivial factor of {n} found. It is probably a prime.')
     else:
-        print(f'{d} is a non-trivial factor of {n}')
+        if show:
+            print(f'{d} is a non-trivial factor of {n}')
 
         assert 1 < d < n
         assert n % d == 0
+
+    return d
+
+
+def find_factor_cirq(n: int, order_finder: Callable[[int, int], Optional[int]] = naive_order_finder, show=True):
+    return main(n, order_finder, show)
 
 
 if __name__ == '__main__':
