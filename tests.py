@@ -10,11 +10,22 @@ CORRECT_ANS_SET = [[2, 3], [2, 2, 2], [3, 3], [2, 2, 3], [13],
                    [3, 5], [3, 3, 2], [5, 2, 2], [7, 3], [5, 5], [5, 3, 2]]
 
 
+def test_function(function, number, *args):
+    z = None
+    n = number
+    ans = []
+    while z != n:
+        z = function(number, *args)
+        ans.append(z)
+    return ans
+
+
 stats = list()
 for number, ans in zip(NUMBER_SET, CORRECT_ANS_SET):
     # run shor's algorithm
     start_time = datetime.datetime.now()
-    alg_ans = find_factor(number, 7, 8, False, 100)
+    alg_ans = test_function(find_factor, number, 7, 8, False, 100)
+    # alg_ans = find_factor(number, 7, 8, False, 100)
     end_time = datetime.datetime.now()
     time_diff = (end_time - start_time)
     execution_time = time_diff.total_seconds() * 1000
@@ -24,7 +35,8 @@ for number, ans in zip(NUMBER_SET, CORRECT_ANS_SET):
 
     # run shor's algorithm
     start_time = datetime.datetime.now()
-    alg_ans = find_factor_cirq(number, quantum_order_finder, False)
+    alg_ans = test_function(find_factor_cirq, quantum_order_finder, False)
+    # alg_ans = find_factor_cirq(number, quantum_order_finder, False)
     end_time = datetime.datetime.now()
     time_diff = (end_time - start_time)
     execution_time = time_diff.total_seconds() * 1000
@@ -34,7 +46,9 @@ for number, ans in zip(NUMBER_SET, CORRECT_ANS_SET):
 
     # run shor's algorithm
     start_time = datetime.datetime.now()
-    alg_ans = find_factor_cirq(number, naive_order_finder, False)
+    alg_ans = test_function(find_factor_cirq, number,
+                            naive_order_finder, False)
+    # alg_ans = find_factor_cirq(number, naive_order_finder, False)
     end_time = datetime.datetime.now()
     time_diff = (end_time - start_time)
     execution_time = time_diff.total_seconds() * 1000
