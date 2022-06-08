@@ -306,7 +306,7 @@ def find_factor(
         Factor k of n is trivial if it is 1 or n.
     """
     if sympy.isprime(n):
-        return None
+        return n
     if n % 2 == 0:
         return 2
     c = find_factor_of_prime_power(n)
