@@ -4,7 +4,7 @@ from IPython.display import display, Markdown, clear_output
 from cirq_shor import find_factor_cirq, naive_order_finder, quantum_order_finder
 
 factoring_number = widgets.IntText(
-    value=15,
+    value=14,
     description='Type number for factoring:')
 
 timeout = widgets.IntText(

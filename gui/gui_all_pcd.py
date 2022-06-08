@@ -5,7 +5,7 @@ from cirq_shor import find_factor_cirq, naive_order_finder, quantum_order_finder
 from common import run_function
 
 factoring_number = widgets.IntText(
-    value=15,
+    value=14,
     description='Type number for factoring:')
 
 timeout = widgets.IntText(
@@ -36,7 +36,7 @@ info1 = Markdown("""# Shor's algorithm using Qiskit
 - Write positive number""")
 
 factoring_number2 = widgets.IntText(
-    value=15,
+    value=14,
     description='Type number for factoring:')
 
 button2 = widgets.Button(description="Start Shor's algorithm")
@@ -63,7 +63,7 @@ info2 = Markdown("""# Function using naive algorithm
 - Write positive number""")
 
 factoring_number3 = widgets.IntText(
-    value=15,
+    value=14,
     description='Type number for factoring:')
 
 button3 = widgets.Button(description="Start Shor's algorithm")
