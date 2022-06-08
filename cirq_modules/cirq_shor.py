@@ -345,8 +345,6 @@ def main(n: int, order_finder: Callable[[int, int], Optional[int]] = naive_order
         if show:
             print(f'{d} is a non-trivial factor of {n}')
 
-        assert 1 < d < n
-        assert n % d == 0
 
     return d
 
