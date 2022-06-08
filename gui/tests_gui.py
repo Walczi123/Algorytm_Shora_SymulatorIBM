@@ -1,23 +1,36 @@
 import ipywidgets as widgets
-from tests.tests import run_tests
+from algorithms.shor import *
 from IPython.display import display, Markdown, clear_output
+from cirq_shor import find_factor_cirq, naive_order_finder, quantum_order_finder
+from tests_stats import aggregate_resuls1, aggregate_resuls2
 
+file_path = widgets.Text(
+    value='./tests_results_local.csv',
+    description='Type path to file with test results.')
 
-button = widgets.Button(description="Start tests")
+separator = widgets.Text(
+    value=',',
+    description='Type the separator')
+
+button = widgets.Button(description="Show results")
 output = widgets.Output()
 
 
 def on_button_clicked(_):
     with output:
         clear_output()
-        run_tests()
+        df1 = aggregate_resuls1(file_path.value, separator.value)
+        display(df1)
+        df2 = aggregate_resuls2(file_path.value, separator.value)
+        display(df2)
+
 
 button.on_click(on_button_clicked)
 
 
-vbox = widgets.VBox([ button, output])
+vbox = widgets.VBox([file_path, separator, button, output])
 
-info = Markdown("""# Shor's algorithm""")
+info = Markdown("""# Show results of tests""")
 
 
 def start_gui():
