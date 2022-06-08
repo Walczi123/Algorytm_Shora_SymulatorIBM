@@ -1,7 +1,7 @@
 import ipywidgets as widgets
 from algorithms.shor import *
 from IPython.display import display, Markdown, clear_output
-from cirq_shor import find_factor_cirq, naive_order_finder, quantum_order_finder
+from cirq_modules.cirq_shor import find_factor_cirq, naive_order_finder, quantum_order_finder
 from tests_stats import aggregate_resuls1, aggregate_resuls2
 
 file_path = widgets.Text(
