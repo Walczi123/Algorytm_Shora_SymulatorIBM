@@ -8,6 +8,10 @@ factoring_number = widgets.IntText(
     value=14,
     description='Type number for factoring:')
 
+a_number = widgets.IntText(
+    value=2,
+    description='Type number for searching value:')
+
 timeout = widgets.IntText(
     value=0,
     description='Type the timeout value:')
@@ -22,7 +26,7 @@ def on_button_clicked(_):
         display(Markdown(
             f"Factoring for: {factoring_number.value} (timeout: {timeout.value})"))
         factor_list = run_function(
-            find_factor_return1st, factoring_number.value, 7, 8, timeout.value)
+            find_factor_return1st, factoring_number.value, a_number.value, 8, True, timeout.value)
         display(
             Markdown(f"Algorithm uwing Qiskit founds: {factor_list}"))
 
@@ -30,7 +34,7 @@ def on_button_clicked(_):
 button.on_click(on_button_clicked)
 
 
-vbox1 = widgets.VBox([factoring_number, timeout, button, output])
+vbox1 = widgets.VBox([factoring_number, a_number, timeout, button, output])
 
 info1 = Markdown("""# Shor's algorithm using Qiskit
 - Write positive number""")

@@ -21,7 +21,7 @@ def on_button_clicked(_):
         display(Markdown(
             f"Factoring for: {factoring_number.value} (timeout: {timeout.value})"))
         factor_list2 = find_factor(
-            factoring_number.value, a=7, qubits_count=8, timeout=timeout.value)
+            factoring_number.value, a=2, qubits_count=8, timeout=timeout.value)
         if len(factor_list2) == 0:
             display(Markdown(f"Qiskit - TIMEOUT: no factor found for the second run"))
         else:
